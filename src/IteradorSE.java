@@ -9,7 +9,7 @@ public class IteradorSE<T> implements IIterador<T> {
         this.actual = l.cabeza;
     }
     public IteradorSE() {
-        this.miLista = new ListaSimplementeEnlazada();
+        this.miLista = new ListaSimplementeEnlazada<T>();
     }
 
     @Override
