@@ -54,4 +54,18 @@ public class ListaSimplementeEnlazada<T> implements Lista<T> {
         return new IteradorSE<T>();
     }
 
+    public ElementoSE<T> getCabeza() {
+        if (this.cabeza == null) {
+            return null;
+        }
+        return this.cabeza;
+    }
+
+    public boolean isEmpty() {
+        if (this.cabeza == null) {
+            return true;
+        }
+        return false;
+    }
+
 }

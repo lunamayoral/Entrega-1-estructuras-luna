@@ -24,7 +24,6 @@ public class IteradorDE<T> implements IIterador<T> {
         return temporal;
     }
 
-    @Override
     public T getDato() {
         T temporal = this.actual.getDato();
         this.actual = this.actual.getSiguiente();

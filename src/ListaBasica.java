@@ -9,7 +9,7 @@ public class ListaBasica<T> implements Lista<T> {
         this.elementos = (T[])(new Object[this.maxElementos]);
     }
 
-    public void setElemento(int indice, T elemento) {
+    protected void setElemento(int indice, T elemento) {
         if (indice >= 0 && indice < this.maxElementos) {
             this.elementos[indice] = elemento;
         }else{
@@ -17,7 +17,7 @@ public class ListaBasica<T> implements Lista<T> {
         }
     }
 
-    public T getElemento(int indice) {
+    protected T getElemento(int indice) {
         if (indice >= 0 && indice < this.maxElementos) {
             return this.elementos[indice];
         }
@@ -57,7 +57,6 @@ public class ListaBasica<T> implements Lista<T> {
         return false;
     }
 
-
     @Override
     public int getNumElementos() {
         return numElementos;
@@ -65,8 +64,10 @@ public class ListaBasica<T> implements Lista<T> {
 
     @Override
     public IIterador<T> getIterador() {
-        return new IteradorListaBasica<T>();
+        IteradorListaBasica<T> it = new IteradorListaBasica<T>(this);
+        return it;
     }
+
 
 
 }

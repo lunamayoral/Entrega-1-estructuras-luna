@@ -17,7 +17,7 @@ public class IteradorSE<T> implements IIterador<T> {
         return this.actual != null;
     }
 
-    @Override
+
     public T getDato() {
         T temporal = this.actual.getDato(); //elemento, le pido el dato y lo guardo en la variable temporal
         this.actual = this.actual.getSiguiente();
