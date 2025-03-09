@@ -2,10 +2,6 @@ public class ElementoSE<T> {
     protected T dato; // Dato
     protected ElementoSE<T> siguiente; //Enganche con el siguiente elemento
 
-    //Constructor privado
-    private ElementoSE() {
-    }
-
     public ElementoSE(T dato) {
         this.dato = dato;
     }
@@ -23,5 +19,6 @@ public class ElementoSE<T> {
     public void setDato(T dato) {
         this.dato = dato;
     }
+
 }
 

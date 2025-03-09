@@ -1,26 +1,22 @@
 public class Cola<T> {
-    private ListaSimplementeEnlazada<T> lista;
+    private ListaSimplementeEnlazada<T> cola;
 
     public Cola() {
-        lista = new ListaSimplementeEnlazada<T>();
+        cola = new ListaSimplementeEnlazada<T>();
     }
 
     public void enqueue(T elemento) {
-        lista.add(elemento);
+        cola.add(elemento);
     }
 
     public T dequeue() {
-        if (lista.isEmpty()) {
+        if (cola.isEmpty()) {
             return null;
         } else {
-            T elemento = lista.getCabeza().getDato();
-            lista.delete(elemento);
+            T elemento = cola.getUltimo().getDato();
+            cola.delete(elemento);
             return elemento;
         }
-    }
-
-    public boolean isEmpty() {
-        return lista.isEmpty();
     }
 
 }

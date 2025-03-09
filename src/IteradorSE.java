@@ -6,10 +6,7 @@ public class IteradorSE<T> implements IIterador<T> {
     // Constructor
     public IteradorSE(ListaSimplementeEnlazada<T> l) {
         this.miLista = l;
-        this.actual = l.cabeza;
-    }
-    public IteradorSE() {
-        this.miLista = new ListaSimplementeEnlazada<T>();
+        this.actual = l.getCabeza();
     }
 
     @Override
@@ -26,14 +23,17 @@ public class IteradorSE<T> implements IIterador<T> {
 
     @Override
     public T next() {
+        if (!hasNext()){
+            System.out.println("No hay elementos en la lista.");
+            return null;
+        }
         T temporal = this.actual.getDato();
         this.actual = this.actual.getSiguiente();
         return temporal;
     }
 
     @Override
-    public void delete(){ // POR ACABAR
-        this.actual = null;
+    public void delete(){
+        this.miLista.delete(this.actual.getDato());
     }
-
 }

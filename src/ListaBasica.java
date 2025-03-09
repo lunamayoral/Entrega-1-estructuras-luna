@@ -48,9 +48,12 @@ public class ListaBasica<T> implements Lista<T> {
             return false;
         }
         for (int i = 0; i < numElementos; i++) {
-            if (elementos[i].equals(elemento)) {
-                this.elementos[i] = null;
-                numElementos--;
+            if (elementos[i] != null && elementos[i].equals(elemento)) {
+                for (int j = i; j < numElementos - 1; j++) {
+                    elementos[j] = elementos[j + 1];
+                }
+                elementos[numElementos - 1] = null; // Limpiar el último elemento
+                numElementos--; // Decrementar el número de elementos
                 return true;
             }
         }

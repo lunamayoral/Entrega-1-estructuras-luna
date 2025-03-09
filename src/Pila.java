@@ -1,28 +1,22 @@
 public class Pila<T> {
-    private ListaSimplementeEnlazada<T> lista;
-
-    ListaSimplementeEnlazada<T> pila = new ListaSimplementeEnlazada<T>();
+    private ListaSimplementeEnlazada<T> pila;
 
     public Pila() {
-        lista = new ListaSimplementeEnlazada<T>();
+        pila = new ListaSimplementeEnlazada<T>();
     }
 
     public void push(T elemento) {
-        lista.add(elemento);
+        pila.add(elemento);
     }
 
     public T pop() {
-        if (lista.isEmpty()) {
+        if (pila.isEmpty()) {
             return null;
         } else {
-            T elemento = lista.getCabeza().getDato();
-            lista.delete(elemento);
+            T elemento = pila.getUltimo().getDato();
+            pila.delete(elemento);
             return elemento;
         }
-    }
-
-    public boolean isEmpty() {
-        return lista.isEmpty();
     }
 
 }

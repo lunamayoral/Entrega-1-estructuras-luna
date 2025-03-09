@@ -1,12 +1,20 @@
 public class ListaDoblementeEnlazada<T> implements Lista<T> {
     private ElementoDE<T> cabeza;
     private ElementoDE<T> cola;
-    private int numElementos;
+
+    public ListaDoblementeEnlazada(ElementoDE<T> cabeza) {
+        this.cabeza = cabeza;
+    }
+
+    public ListaDoblementeEnlazada() {
+        this.cabeza = null;
+        this.cola = null;
+    }
 
     @Override
     public boolean add(T dato) {
-        ElementoDE<T> elemento = new ElementoDE<T>(dato);
-        if(this.cabeza == null) {
+        ElementoDE<T> elemento = new ElementoDE<>(dato);
+        if (this.cabeza == null) {
             this.cabeza = elemento;
             this.cola = elemento;
         } else {
@@ -21,7 +29,7 @@ public class ListaDoblementeEnlazada<T> implements Lista<T> {
         if (elemento == null) {
             this.add(dato);
         } else {
-            ElementoDE<T> nuevoElemento = new ElementoDE<T>(dato);
+            ElementoDE<T> nuevoElemento = new ElementoDE<>(dato);
             if (elemento == this.cabeza) {
                 elemento.anterior = nuevoElemento;
                 nuevoElemento.siguiente = elemento;
@@ -33,6 +41,39 @@ public class ListaDoblementeEnlazada<T> implements Lista<T> {
                 nuevoElemento.siguiente.anterior = nuevoElemento;
             }
         }
+    }
+
+
+    @Override
+    public int getNumElementos() {
+        int contador = 0;
+        ElementoDE<T> actual = this.cabeza;
+        while (actual != null) {
+            contador++;
+            actual = actual.siguiente;
+        }
+        return contador;
+    }
+
+    @Override
+    public IIterador<T> getIterador() {
+        if (this.cabeza == null) {
+            return null;
+        }
+        return new IteradorDE<>();
+    }
+
+    @Override
+    public boolean delete(T dato) {
+        ElementoDE<T> elemento = this.cabeza;
+        if (elemento != null) {
+            if (elemento.getDato().equals(dato)) {
+                delete(elemento);
+                return true; // Elemento encontrado y eliminado
+            }
+            elemento = elemento.siguiente;
+        }
+        return false; // Elemento no encontrado
     }
 
 
@@ -56,27 +97,6 @@ public class ListaDoblementeEnlazada<T> implements Lista<T> {
                 elemento.siguiente.anterior = elemento.anterior;
             }
         }
-    }
-
-    @Override
-    public int getNumElementos() {
-        if (this.cabeza == null) {
-            return 0;
-        }
-        return this.numElementos;
-    }
-
-    @Override
-    public IIterador<T> getIterador() {
-        if (this.cabeza == null) {
-            return null;
-        }
-        return new IteradorDE<T>();
-    }
-
-    @Override
-    public boolean delete(T dato) {   //PREGUNTAR!!!!!
-        return false;
     }
 
 }

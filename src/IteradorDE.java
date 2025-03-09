@@ -1,7 +1,15 @@
 public class IteradorDE<T> implements IIterador<T> {
-
     private ListaDoblementeEnlazada<T> lista;
     private ElementoDE<T> actual;
+
+    public IteradorDE(ListaDoblementeEnlazada<T> lista) {
+        this.lista = lista;
+    }
+
+    public IteradorDE() {
+        this.lista = new ListaDoblementeEnlazada<>();
+    }
+
 
     public void insert(T dato) {
         this.lista.insert(this.actual, dato);
@@ -19,6 +27,9 @@ public class IteradorDE<T> implements IIterador<T> {
 
     @Override
     public T next() {
+        if (!hasNext()) {
+            System.out.println("No hay elementos en la lista");
+        }
         T temporal = this.actual.getDato();
         this.actual = this.actual.getSiguiente();
         return temporal;
