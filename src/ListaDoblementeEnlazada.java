@@ -1,10 +1,6 @@
 public class ListaDoblementeEnlazada<T> implements Lista<T> {
-    private ElementoDE<T> cabeza;
-    private ElementoDE<T> cola;
-
-    public ListaDoblementeEnlazada(ElementoDE<T> cabeza) {
-        this.cabeza = cabeza;
-    }
+    protected ElementoDE<T> cabeza;
+    protected ElementoDE<T> cola;
 
     public ListaDoblementeEnlazada() {
         this.cabeza = null;
@@ -37,8 +33,8 @@ public class ListaDoblementeEnlazada<T> implements Lista<T> {
             } else {
                 nuevoElemento.siguiente = elemento;
                 nuevoElemento.anterior = elemento.anterior;
-                nuevoElemento.anterior.siguiente = nuevoElemento;
-                nuevoElemento.siguiente.anterior = nuevoElemento;
+                elemento.anterior.siguiente = nuevoElemento;
+                elemento.anterior = nuevoElemento;
             }
         }
     }
@@ -57,46 +53,37 @@ public class ListaDoblementeEnlazada<T> implements Lista<T> {
 
     @Override
     public IIterador<T> getIterador() {
-        if (this.cabeza == null) {
-            return null;
-        }
-        return new IteradorDE<>();
+        return new IteradorDE<>(this);
     }
 
     @Override
     public boolean delete(T dato) {
-        ElementoDE<T> elemento = this.cabeza;
-        if (elemento != null) {
-            if (elemento.getDato().equals(dato)) {
-                delete(elemento);
+        ElementoDE<T> actual = this.cabeza;
+        while (actual != null) {
+            if (actual.getDato().equals(dato)) {
+                // Si se encuentra el elemento, proceder a eliminarlo
+                if (actual.anterior == null) { // Es la cabeza
+                    this.cabeza = actual.siguiente;
+                    if (this.cabeza != null) {
+                        this.cabeza.anterior = null; // Actualiza la cabeza
+                    }
+                } else {
+                    actual.anterior.siguiente = actual.siguiente; // Conectar anterior con siguiente
+                }
+
+                if (actual.siguiente == null) { // Es la cola
+                    this.cola = actual.anterior;
+                    if (this.cola != null) {
+                        this.cola.siguiente = null; // Actualiza la cola
+                    }
+                } else {
+                    actual.siguiente.anterior = actual.anterior; // Conectar siguiente con anterior
+                }
                 return true; // Elemento encontrado y eliminado
             }
-            elemento = elemento.siguiente;
+            actual = actual.siguiente; // Avanzar al siguiente elemento
         }
         return false; // Elemento no encontrado
-    }
-
-
-    public void delete(ElementoDE<T> elemento) {
-        if (elemento != null) {
-            boolean cabeza = false;
-            boolean cola = false;
-
-            if (elemento.anterior == null) {
-                this.cabeza = elemento.siguiente;
-                cabeza = true;
-            }
-            if(elemento.siguiente == null) {
-                this.cola = elemento.anterior;
-                cola = true;
-            }
-            if(!cabeza) {
-                elemento.anterior.siguiente = elemento.siguiente;
-            }
-            if(!cola) {
-                elemento.siguiente.anterior = elemento.anterior;
-            }
-        }
     }
 
 }

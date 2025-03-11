@@ -1,3 +1,7 @@
 public class OrdenadorDiccionario<K, V> {
-    private boolean ordenAscendente;
+    protected boolean ordenAscendente;
+
+    public OrdenadorDiccionario(boolean ordenAscendente) {
+        this.ordenAscendente = ordenAscendente;
+    }
 }

@@ -86,7 +86,7 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
     public IteradorDiccionario<K, V> find (IteradorDiccionario<K, V> it, K clave) {
         while (it.hasNext()) {
             it.next();
-            if (it.getKey() == clave) {
+            if (it.getKey().equals(clave)) {
                 return it;
             }
         }

@@ -24,14 +24,6 @@ public class ListaBasica<T> implements Lista<T> {
         return null;
     }
 
-    public void mostrarElementos() {
-        for (T elemento : this.elementos) {
-            if (elemento != null) {
-                System.out.println(elemento.toString());
-            }
-        }
-    }
-
     @Override
     public boolean add(T elemento) {
         if (numElementos < this.maxElementos) {

@@ -4,20 +4,23 @@ public class IteradorDE<T> implements IIterador<T> {
 
     public IteradorDE(ListaDoblementeEnlazada<T> lista) {
         this.lista = lista;
+        this.actual = lista.cabeza;
     }
-
-    public IteradorDE() {
-        this.lista = new ListaDoblementeEnlazada<>();
-    }
-
 
     public void insert(T dato) {
-        this.lista.insert(this.actual, dato);
+        if (actual == null) {
+            // Si actual es null, significa que estamos al final de la lista
+            this.lista.add(dato); // Agregar al final
+        } else {
+            this.lista.insert(this.actual, dato); // Insertar antes del elemento actual
+        }
     }
 
     @Override
     public void delete() {
-        this.lista.delete(this.actual);
+        if (actual != null) {
+            this.lista.delete(this.actual.getDato());
+        }
     }
 
     @Override
@@ -27,8 +30,9 @@ public class IteradorDE<T> implements IIterador<T> {
 
     @Override
     public T next() {
-        if (!hasNext()) {
+        if (actual == null) {
             System.out.println("No hay elementos en la lista");
+            return null;
         }
         T temporal = this.actual.getDato();
         this.actual = this.actual.getSiguiente();
@@ -36,8 +40,9 @@ public class IteradorDE<T> implements IIterador<T> {
     }
 
     public T getDato() {
-        T temporal = this.actual.getDato();
-        this.actual = this.actual.getSiguiente();
-        return temporal;
+        if (actual == null) {
+            return null; // Devuelve null si no hay más elementos
+        }
+        return this.actual.getDato();
     }
 }

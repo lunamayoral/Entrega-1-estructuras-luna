@@ -34,11 +34,6 @@ class ListaBasicaTest {
     }
 
     @Test
-    void mostrarElementos() {
-
-    }
-
-    @Test
     void add() {
         ListaBasica<String> lista = new ListaBasica<>(2);
         assertTrue(lista.add("A"));
