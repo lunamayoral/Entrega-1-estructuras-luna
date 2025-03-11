@@ -13,10 +13,26 @@ public class Pila<T> {
         if (pila.isEmpty()) {
             return null;
         } else {
-            T elemento = pila.getUltimo().getDato();
+            T elemento = pila.getCabeza().getDato();
             pila.delete(elemento);
             return elemento;
         }
+    }
+
+    public T peek() {
+        if (pila.isEmpty()) {
+            return null;
+        } else {
+            return pila.getCabeza().getDato();
+        }
+    }
+
+    public boolean vacia() {
+        return pila.isEmpty();
+    }
+
+    public int size() {
+        return pila.getNumElementos();
     }
 
 }
