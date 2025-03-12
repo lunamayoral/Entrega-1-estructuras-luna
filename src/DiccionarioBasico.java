@@ -95,7 +95,13 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
 
     protected IteradorDiccionario<K, V> find (K clave) {
         IteradorDiccionario<K, V> it = new IteradorDiccionario<>(cabeza);
-        return this.find(it, clave);
+        while (it.hasNext()) {
+            ElementoDiccionario<K, V> elemento = it.next();
+            if (elemento != null && elemento.getKey().equals(clave)) {
+                return it;
+            }
+        }
+        return it;
     }
 
     @Override
