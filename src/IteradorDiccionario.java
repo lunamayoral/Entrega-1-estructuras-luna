@@ -12,7 +12,7 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
 
     @Override
     public boolean hasNext() {
-        return actual != null;
+        return actual != null && actual.siguiente!=null;
     }
 
     @Override
@@ -21,7 +21,6 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
             System.out.println("No hay elementos en el diccionario");
             return null;
         }
-        ElementoDiccionario<K, V> elemento = actual;
         actual = actual.siguiente;
         return actual;
     }

@@ -37,9 +37,4 @@ public class ElementoDiccionario <K, V> {
         this.valor = valor;
     }
 
-    public boolean updateValue(V valor) { // HACER MEJOR
-        this.valor = valor;
-        return true;
-    }
-
 }
