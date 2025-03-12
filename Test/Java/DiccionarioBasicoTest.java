@@ -163,4 +163,11 @@ class DiccionarioBasicoTest {
         IteradorDiccionario<String, Integer> iterador = diccionario.getIterador();
         assertTrue(iterador.hasNext());
     }
+
+    @Test
+    void getCabeza() {
+        ElementoDiccionario<String,Integer> cabeza = new ElementoDiccionario<>("elemento",5);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(cabeza);
+        assertEquals(cabeza, diccionario.getCabeza());
+    }
 }
