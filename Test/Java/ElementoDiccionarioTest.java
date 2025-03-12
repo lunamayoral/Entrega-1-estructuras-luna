@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ElementoDiccionarioTest {
-    private ElementoDiccionario<String, Integer> elemento;
+
 
     @Test
     void delete() {
@@ -47,5 +47,33 @@ class ElementoDiccionarioTest {
         elemento.setValue(230);
         assertEquals(230, elemento.getValue());
 
+    }
+
+    @Test
+    void getAnterior(){
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 120);
+        assertNull(elemento.getAnterior());
+    }
+
+    @Test
+    void getSiguiente(){
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 120);
+        assertNull(elemento.getSiguiente());
+    }
+
+    @Test
+    void setAnterior(){
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 120);
+        ElementoDiccionario<String, Integer> elemento1 = new ElementoDiccionario<>("elemento1", 12);
+        elemento.setAnterior(elemento1);
+        assertEquals(elemento1,elemento.getAnterior());
+    }
+
+    @Test
+    void setSiguiente(){
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 120);
+        ElementoDiccionario<String, Integer> elemento1 = new ElementoDiccionario<>("elemento1", 12);
+        elemento.setSiguiente(elemento1);
+        assertEquals(elemento1,elemento.getSiguiente());
     }
 }

@@ -170,4 +170,29 @@ class DiccionarioBasicoTest {
         DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(cabeza);
         assertEquals(cabeza, diccionario.getCabeza());
     }
+
+    @Test
+    void getCola() {
+        ElementoDiccionario<String,Integer> cola = new ElementoDiccionario<>("elemento",5);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(cola);
+        assertEquals(cola, diccionario.getCola());
+    }
+
+    @Test
+    void setCola(){
+        ElementoDiccionario<String,Integer> cola = new ElementoDiccionario<>("elemento",5);
+        ElementoDiccionario<String,Integer> cola1 = new ElementoDiccionario<>("elemento1",17);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(cola);
+        diccionario.setCola(cola1);
+        assertEquals(cola1, diccionario.getCola());
+    }
+
+    @Test
+    void setCabeza(){
+        ElementoDiccionario<String,Integer> cabeza = new ElementoDiccionario<>("elemento",5);
+        ElementoDiccionario<String,Integer> cabeza1 = new ElementoDiccionario<>("elemento1",17);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(cabeza);
+        diccionario.setCabeza(cabeza1);
+        assertEquals(cabeza1, diccionario.getCabeza());
+    }
 }

@@ -142,4 +142,15 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
         return new IteradorDiccionario<>(cabeza);
     }
 
+    public void setCabeza(ElementoDiccionario<K, V> cabeza) {
+        this.cabeza = cabeza;
+    }
+
+    public void setCola(ElementoDiccionario<K, V> cola) {
+        this.cola = cola;
+    }
+
+    public ElementoDiccionario<K, V> getCola() {
+        return cola;
+    }
 }

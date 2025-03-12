@@ -40,4 +40,19 @@ public class ElementoDiccionario <K, V> {
         this.valor = valor;
     }
 
+    public ElementoDiccionario<K, V> getSiguiente() {
+        return siguiente;
+    }
+
+    public void setSiguiente(ElementoDiccionario<K, V> siguiente) {
+        this.siguiente = siguiente;
+    }
+
+    public ElementoDiccionario<K, V> getAnterior() {
+        return anterior;
+    }
+
+    public void setAnterior(ElementoDiccionario<K, V> anterior) {
+        this.anterior = anterior;
+    }
 }
