@@ -82,16 +82,6 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
 
     }
 
-    public IteradorDiccionario<K, V> find (IteradorDiccionario<K, V> it, K clave) {
-        while (it.hasNext()) {
-            it.next();
-            if (it.getKey().equals(clave)) {
-                return it;
-            }
-        }
-        return it;
-    }
-
     protected IteradorDiccionario<K, V> find (K clave) {
         IteradorDiccionario<K, V> it = new IteradorDiccionario<>(cabeza);
         while (it.hasNext()) {
@@ -105,12 +95,12 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
 
     @Override
     public boolean exists(K clave) {
-        IteradorDiccionario<K, V> it = getIterador();
-        while (it.hasNext()) {
-            ElementoDiccionario<K, V> elemento = it.next();
-            if (elemento.getKey().equals(clave)) {
+        ElementoDiccionario<K, V> actual = cabeza; // Comienza desde la cabeza
+        while (actual != null) { // Recorre la lista hasta que no haya más elementos
+            if (actual.getKey().equals(clave)) { // Compara la clave
                 return true; // La clave existe
             }
+            actual = actual.siguiente; // Avanza al siguiente elemento
         }
         return false; // La clave no existe
     }

@@ -15,7 +15,7 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
 
     @Override
     public boolean hasNext() {
-        return actual != null && actual.siguiente!=null;
+        return actual != null && actual.siguiente != null;
     }
 
     @Override
@@ -49,5 +49,9 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
     @Override
     public void delete() {
         this.miDiccionario.delete(this.actual.getKey());
+    }
+
+    public void setActual(ElementoDiccionario<K, V> nuevoActual) {
+        this.actual = nuevoActual; // Establece el nuevo elemento actual
     }
 }

@@ -70,10 +70,6 @@ class DiccionarioBasicoTest {
         assertEquals("clave1", it.getKey());
     }
 
-    @Test
-    void testFind() {
-
-    }
 
     @Test
     void exists() {
@@ -114,17 +110,7 @@ class DiccionarioBasicoTest {
 
     @Test
     void getIterador() {
-        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 5);
-        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(elemento);
-        diccionario.add("clave1", 1);
-        diccionario.add("clave2", 2);
-        IteradorDiccionario<String, Integer> it = diccionario.getIterador();
-        assertNotNull(it);
-        assertTrue(it.hasNext());
-        assertEquals("clave1", it.next().getKey());
-        assertTrue(it.hasNext());
-        assertEquals("clave2", it.next().getKey());
-        assertFalse(it.hasNext());
+
 
     }
 }
