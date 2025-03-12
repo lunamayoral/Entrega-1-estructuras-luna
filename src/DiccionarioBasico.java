@@ -7,6 +7,11 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
         this.cola = elemento;
     }
 
+    public DiccionarioBasico() {
+        this.cabeza = null;
+        this.cola = null;
+    }
+
     @Override
     public boolean add(K clave, V valor) {
         if (exists(clave)) {
@@ -60,8 +65,8 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
         IteradorDiccionario<K, V> it = this.getIterador();
         ListaDoblementeEnlazada<K> claves = new ListaDoblementeEnlazada<>();
         while (it.hasNext()) {
-            it.next();
-            claves.add(it.getKey());
+            ElementoDiccionario<K, V> elemento = it.next(); // Obtiene el elemento actual
+            claves.add(elemento.getKey());
         }
         return claves;
     }
@@ -131,7 +136,7 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
 
     @Override
     public IteradorDiccionario<K, V> getIterador() {
-        return new IteradorDiccionario<>();
+        return new IteradorDiccionario<>(cabeza);
     }
 
 }

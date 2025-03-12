@@ -37,16 +37,23 @@ class DiccionarioBasicoTest {
 
     @Test
     void getKeys() {
-
-
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 5);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(elemento);
+        diccionario.add("clave1", 1);
+        diccionario.add("clave2", 2);
+        ListaDoblementeEnlazada<String> claves = diccionario.getKeys();
+        assertEquals(2, claves.getNumElementos());
 
     }
 
     @Test
     void getValues() {
-        ElementoDiccionario<String,Integer> elemento = new ElementoDiccionario<>("elemento",5);
-        DiccionarioBasico<String,Integer> diccionario = new DiccionarioBasico(elemento);
-
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 5);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(elemento);
+        diccionario.add("clave1", 1);
+        diccionario.add("clave2", 2);
+        ListaDoblementeEnlazada<Integer> valores = diccionario.getValues();
+        assertEquals(2, valores.getNumElementos());
 
     }
 
@@ -67,18 +74,29 @@ class DiccionarioBasicoTest {
 
     @Test
     void exists() {
-        ElementoDiccionario<String,Integer> elemento = new ElementoDiccionario<>("elemento",5);
-        DiccionarioBasico<String,Integer> diccionario = new DiccionarioBasico(elemento);
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 5);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(elemento);
+        diccionario.add("clave1", 1);
+        assertTrue(diccionario.exists("clave1"));
+        assertFalse(diccionario.exists("clave2"));
     }
 
     @Test
     void getValue() {
-        ElementoDiccionario<String,Integer> elemento = new ElementoDiccionario<>("elemento",5);
-        DiccionarioBasico<String,Integer> diccionario = new DiccionarioBasico(elemento);
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 5);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(elemento);
+        diccionario.add("clave1", 1);
+        assertEquals(1, diccionario.getValue("clave1"));
     }
 
     @Test
     void setValue() {
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 5);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(elemento);
+        diccionario.add("clave1", 1);
+        assertTrue(diccionario.setValue("clave1", 2)); // Debe actualizar el valor
+        assertEquals(2, diccionario.getValue("clave1"));
+        assertFalse(diccionario.setValue("clave2", 3));
 
     }
 
@@ -93,6 +111,17 @@ class DiccionarioBasicoTest {
 
     @Test
     void getIterador() {
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elemento", 5);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(elemento);
+        diccionario.add("clave1", 1);
+        diccionario.add("clave2", 2);
+        IteradorDiccionario<String, Integer> it = diccionario.getIterador();
+        assertNotNull(it);
+        assertTrue(it.hasNext());
+        assertEquals("clave1", it.next().getKey());
+        assertTrue(it.hasNext());
+        assertEquals("clave2", it.next().getKey());
+        assertFalse(it.hasNext());
 
     }
 }
