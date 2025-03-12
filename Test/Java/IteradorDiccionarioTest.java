@@ -22,33 +22,33 @@ class IteradorDiccionarioTest {
         IteradorDiccionario<String, Integer> it = new IteradorDiccionario<>(elemento);
         assertEquals("clave",it.next().getKey());
         assertEquals(12,it.getValue());
-        assertEquals(null,it.next());
+        assertNull(it.next());
     }
 
     @Test
     void getKey() {
         ElementoDiccionario<String,Integer> elemento = new ElementoDiccionario<>("elemento",5);
-        DiccionarioBasico<String,Integer> diccionario = new DiccionarioBasico(elemento);
-        IteradorDiccionario<String, Integer> it = new IteradorDiccionario<>(elemento);
+        DiccionarioBasico<String,Integer> diccionario = new DiccionarioBasico<>(elemento);
+        IteradorDiccionario<String, Integer> it = diccionario.getIterador();
         assertEquals("elemento", it.getKey());
         IteradorDiccionario<String, Integer> it2 = new IteradorDiccionario<>();
-        assertEquals(null,it2.getKey());
+        assertNull(it2.getKey());
     }
 
     @Test
     void getValue() {
         ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elem", 5);
         DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(elemento);
-        IteradorDiccionario<String, Integer> it = new IteradorDiccionario<>(elemento);
+        IteradorDiccionario<String, Integer> it = diccionario.getIterador();
         assertEquals(5,it.getValue());
         IteradorDiccionario<String, Integer> it2 = new IteradorDiccionario<>();
-        assertEquals(null,it2.getValue());
+        assertNull(it2.getValue());
     }
 
     @Test
     void getActual() {
         ElementoDiccionario<String,Integer> elemento = new ElementoDiccionario<>("elemento",5);
-        DiccionarioBasico<String,Integer> diccionario = new DiccionarioBasico(elemento);
+        DiccionarioBasico<String,Integer> diccionario = new DiccionarioBasico<>(elemento);
         IteradorDiccionario<String, Integer> it = new IteradorDiccionario<>();
         //assertEquals(cew, diccionario.getActual());
     }
