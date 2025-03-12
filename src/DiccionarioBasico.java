@@ -53,7 +53,7 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
 
     public boolean insert(K clave, V valor) {
         IteradorDiccionario<K, V> it = this.find(clave);
-        if (it.getActual() != null) {
+        if (it != null && it.getActual() != null) {
             it.getActual().setValue(valor);
         } else {
             this.add(clave, valor);

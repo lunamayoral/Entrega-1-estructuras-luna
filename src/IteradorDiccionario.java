@@ -21,7 +21,7 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
     @Override
     public ElementoDiccionario<K, V> next() {
         if (!hasNext()) {
-            throw new NoSuchElementException("No hay más elementos en el diccionario");
+            throw new NoSuchElementException();
         }
         ElementoDiccionario<K, V> elementoActual = actual; // Guarda el elemento actual
         actual = actual.siguiente; // Avanza al siguiente
@@ -51,7 +51,4 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
         this.miDiccionario.delete(this.actual.getKey());
     }
 
-    public void setActual(ElementoDiccionario<K, V> nuevoActual) {
-        this.actual = nuevoActual; // Establece el nuevo elemento actual
-    }
 }

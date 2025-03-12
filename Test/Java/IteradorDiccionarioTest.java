@@ -55,5 +55,6 @@ class IteradorDiccionarioTest {
 
     @Test
     void delete() {
+
     }
 }
