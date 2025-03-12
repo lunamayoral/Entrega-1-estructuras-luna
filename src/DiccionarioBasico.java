@@ -1,6 +1,6 @@
 public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
-    private ElementoDiccionario<K, V> cabeza;
-    private ElementoDiccionario<K, V> cola;
+    protected ElementoDiccionario<K, V> cabeza;
+    protected ElementoDiccionario<K, V> cola;
 
     public DiccionarioBasico(ElementoDiccionario<K, V> elemento) {
         this.cabeza = elemento;

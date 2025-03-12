@@ -3,6 +3,7 @@ public class DiccionarioOrdenado<K extends Comparable<K>,V> extends DiccionarioB
     private OrdenadorDiccionario<K, V> ordenador;
 
     public DiccionarioOrdenado(boolean ordenAscendente) {
+        super();
         this.ordenador = new OrdenadorDiccionario<>(ordenAscendente);
     }
 
