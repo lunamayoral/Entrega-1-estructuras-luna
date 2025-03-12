@@ -12,6 +12,10 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
         this.cola = null;
     }
 
+    public ElementoDiccionario<K, V> getCabeza() {
+        return cabeza;
+    }
+
     @Override
     public boolean add(K clave, V valor) {
         if (exists(clave)) {

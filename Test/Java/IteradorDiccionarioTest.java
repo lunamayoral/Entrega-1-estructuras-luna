@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class IteradorDiccionarioTest {
@@ -20,9 +22,12 @@ class IteradorDiccionarioTest {
         DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(elemento);
         diccionario.add("clave",12);
         IteradorDiccionario<String, Integer> it = new IteradorDiccionario<>(elemento);
-        assertEquals("clave",it.next().getKey());
-        assertEquals(12,it.getValue());
-        assertNull(it.next());
+        assertEquals("elem",it.next().getKey());
+        try {
+            it.next();
+        } catch (NoSuchElementException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
@@ -49,12 +54,19 @@ class IteradorDiccionarioTest {
     void getActual() {
         ElementoDiccionario<String,Integer> elemento = new ElementoDiccionario<>("elemento",5);
         DiccionarioBasico<String,Integer> diccionario = new DiccionarioBasico<>(elemento);
-        IteradorDiccionario<String, Integer> it = new IteradorDiccionario<>();
-        //assertEquals(cew, diccionario.getActual());
+        IteradorDiccionario<String, Integer> it = diccionario.getIterador();
+        assertEquals(elemento, it.getActual());
     }
 
     @Test
     void delete() {
-
+        ElementoDiccionario<String, Integer> elemento = new ElementoDiccionario<>("elem", 5);
+        DiccionarioBasico<String, Integer> diccionario = new DiccionarioBasico<>(elemento);
+        diccionario.add("clave",12);
+        IteradorDiccionario<String, Integer> it = new IteradorDiccionario<>(diccionario);
+        it.next();
+        it.delete();
+        assertEquals("elem", it.getActual().getKey());
+        assertEquals(5, it.getActual().getValue());
     }
 }

@@ -5,12 +5,14 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
     private ElementoDiccionario<K, V> actual;
 
     public IteradorDiccionario(ElementoDiccionario<K, V> cabeza) {
-        this.actual = cabeza;
-    }
-
+        this.actual = cabeza;}
     public IteradorDiccionario() {
         this.actual = null;
+    }
 
+    public IteradorDiccionario(DiccionarioBasico<K, V> miDiccionario) {
+        this.miDiccionario = miDiccionario;
+        this.actual=miDiccionario.getCabeza();
     }
 
     @Override
@@ -39,16 +41,15 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
         if (actual != null) {
             return actual.getValue();
         }
-        return null;
-    }
+        return null;}
 
     protected ElementoDiccionario<K, V> getActual() {
-        return actual;
-    }
+        return actual;}
 
     @Override
     public void delete() {
         this.miDiccionario.delete(this.actual.getKey());
+        this.actual=this.actual.anterior;
     }
 
 }
