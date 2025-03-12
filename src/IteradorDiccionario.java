@@ -33,7 +33,10 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
     }
 
     public V getValue() {
-        return actual.getValue();
+        if (actual != null) {
+            return actual.getValue();
+        }
+        return null;
     }
 
     protected ElementoDiccionario<K, V> getActual() {
