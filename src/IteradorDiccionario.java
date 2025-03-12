@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<K,V>> {
     private Diccionario<K, V> miDiccionario;
     private ElementoDiccionario<K, V> actual;
@@ -19,11 +21,11 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
     @Override
     public ElementoDiccionario<K, V> next() {
         if (!hasNext()) {
-            System.out.println("No hay elementos en el diccionario");
-            return null;
+            throw new NoSuchElementException("No hay más elementos en el diccionario");
         }
-        actual = actual.siguiente;
-        return actual;
+        ElementoDiccionario<K, V> elementoActual = actual; // Guarda el elemento actual
+        actual = actual.siguiente; // Avanza al siguiente
+        return elementoActual; // Devuelve el elemento actual
     }
 
     public K getKey() {

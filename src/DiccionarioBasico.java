@@ -105,8 +105,14 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
 
     @Override
     public boolean exists(K clave) {
-        IteradorDiccionario<K, V> it = this.find(clave);
-        return it.getActual().getKey() == clave;
+        IteradorDiccionario<K, V> it = getIterador();
+        while (it.hasNext()) {
+            ElementoDiccionario<K, V> elemento = it.next();
+            if (elemento.getKey().equals(clave)) {
+                return true; // La clave existe
+            }
+        }
+        return false; // La clave no existe
     }
 
     @Override
@@ -115,12 +121,15 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
     }
 
     public boolean setValue(K clave, V valor) {
-        IteradorDiccionario<K, V> it = this.find(clave); // Buscamos el elemento que corresponde a la clave
-        if (it.getActual() != null) { // si hay elemento
-            it.getActual().setValue(valor); // actualizamos el valor
-            return true; // indicacion operacion exitosa
+        ElementoDiccionario<K, V> actual = cabeza;
+        while (actual != null) {
+            if (actual.getKey().equals(clave)) {
+                actual.setValue(valor); // Actualiza el valor
+                return true; // Indica que la operación fue exitosa
+            }
+            actual = actual.siguiente;
         }
-        return false;  // La clave no existe, no puedo actualizar
+        return false; // La clave no existe, no se puede actualizar
     }
 
     @Override

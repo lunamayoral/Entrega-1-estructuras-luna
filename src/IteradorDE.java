@@ -33,6 +33,7 @@ public class IteradorDE<T> implements IIterador<T> {
         if (actual == null) {
             System.out.println("No hay elementos en la lista");
             return null;
+
         }
         T temporal = this.actual.getDato();
         this.actual = this.actual.getSiguiente();

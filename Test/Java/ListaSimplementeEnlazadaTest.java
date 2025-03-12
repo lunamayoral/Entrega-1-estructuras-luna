@@ -1,8 +1,26 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ListaSimplementeEnlazadaTest {
+
+    @Test
+    void testListaSimplementeEnlazada() {
+        Lista<Integer> lista = new ListaSimplementeEnlazada<>();
+        lista.add(10);
+        lista.add(20);
+        lista.add(30);
+        lista.delete(20);
+        List<Integer> resultado = new ArrayList<>();
+        IIterador<Integer> iterador = lista.getIterador();
+        while (iterador.hasNext()) {
+            resultado.add(iterador.next());
+        }
+        assertEquals(List.of(30, 10), resultado);
+    }
 
     @Test
     void add() {

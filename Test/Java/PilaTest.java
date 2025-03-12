@@ -5,6 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class PilaTest {
 
     @Test
+    void testPila() {
+        Pila<Integer> pila = new Pila<>();
+        pila.push(1);
+        pila.push(2);
+        assertEquals(2, pila.pop());
+    }
+
+    @Test
     void push() {
         Pila<Integer> pila = new Pila<>();
         pila.push(1);

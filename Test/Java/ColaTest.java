@@ -5,6 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class ColaTest {
 
     @Test
+    void testCola() {
+        Cola<Integer> cola = new Cola<>();
+        cola.enqueue(10);
+        cola.enqueue(20);
+        assertEquals(10, cola.dequeue());
+    }
+
+    @Test
     void enqueue() {
         Cola<Integer> cola = new Cola();
         cola.enqueue(1);

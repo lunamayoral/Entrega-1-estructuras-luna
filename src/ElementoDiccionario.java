@@ -13,6 +13,9 @@ public class ElementoDiccionario <K, V> {
 
     public ElementoDiccionario(K clave) {
         this.clave = clave;
+        this.valor = null;
+        this.siguiente = null;
+        this.anterior = null;
     }
 
     public boolean delete() {

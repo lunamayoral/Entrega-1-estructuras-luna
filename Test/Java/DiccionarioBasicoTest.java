@@ -6,6 +6,9 @@ class DiccionarioBasicoTest {
 
     @Test
     void add() {
+        DiccionarioBasico<String, String> diccionariovacio = new DiccionarioBasico<>();
+        assertTrue(diccionariovacio.add("clave1", "valor1"));
+        assertEquals(1, diccionariovacio.getNumElementos());
         ElementoDiccionario<String,Integer> elemento = new ElementoDiccionario<>("elemento",5);
         DiccionarioBasico<String,Integer> diccionario = new DiccionarioBasico(elemento);
         assertTrue(diccionario.add("clave1", 1));
