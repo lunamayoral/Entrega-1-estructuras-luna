@@ -7,6 +7,7 @@ public class IteradorDiccionario<K, V> implements IIterador<ElementoDiccionario<
     }
 
     public IteradorDiccionario() {
+        this.actual = null;
 
     }
 

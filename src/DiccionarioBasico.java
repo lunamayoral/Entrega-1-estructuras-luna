@@ -7,12 +7,6 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
         this.cola = elemento;
     }
 
-    public DiccionarioBasico() {
-        this.cabeza = null;
-        this.cola = null;
-
-    }
-
     @Override
     public boolean add(K clave, V valor) {
         if (exists(clave)) {
@@ -63,21 +57,21 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
     }
 
     public ListaDoblementeEnlazada<K> getKeys() {
-        IIterador<ElementoDiccionario<K, V>> it = this.getIterador();
+        IteradorDiccionario<K, V> it = this.getIterador();
         ListaDoblementeEnlazada<K> claves = new ListaDoblementeEnlazada<>();
         while (it.hasNext()) {
-            ElementoDiccionario<K, V> elemento = it.next();
-            claves.add(elemento.getKey());
+            it.next();
+            claves.add(it.getKey());
         }
         return claves;
     }
 
     public ListaDoblementeEnlazada<V> getValues() {
-        IIterador<ElementoDiccionario<K, V>> it = this.getIterador();
+        IteradorDiccionario<K, V> it = this.getIterador();
         ListaDoblementeEnlazada<V> valores = new ListaDoblementeEnlazada<>();
         while (it.hasNext()) {
-            ElementoDiccionario<K, V> elemento = it.next();
-            valores.add(elemento.getValue());
+            it.next();
+            valores.add(it.getValue());
         }
         return valores;
 
@@ -107,7 +101,7 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
     @Override
     public boolean exists(K clave) {
         IteradorDiccionario<K, V> it = this.find(clave);
-        return it.getActual() != null;
+        return it.getActual().getKey() == clave;
     }
 
     @Override
@@ -136,10 +130,8 @@ public class DiccionarioBasico<K, V> implements Diccionario<K, V> {
     }
 
     @Override
-    public IIterador<ElementoDiccionario<K,V>> getIterador() {
+    public IteradorDiccionario<K, V> getIterador() {
         return new IteradorDiccionario<>();
     }
-
-
 
 }
